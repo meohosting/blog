@@ -119,7 +119,7 @@ The Recovery Mode method is an alternative way that may not work on all VM types
 Direct Installation is the simplest method, where you create a new Droplet with Windows OS directly.
 
 ## Image Link
-[Windows GZ File](https://meocloud.my.id/?p=6)
+[Windows GZ File](_posts/2024-01-04-WindowsLinks.md)
 
 ## Comments
 Feel free to share your thoughts or ask questions about the methods described above.
