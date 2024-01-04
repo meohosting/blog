@@ -32,7 +32,7 @@ Install Windows on DigitalOcean. There are three methods:
 
 ## Using Custom Images
 ### Video Tutorial
-[![Watch the video](https://meocloud.my.id/wp-content/uploads/2023/11/aaaaa-970x527.png)](https://www.youtube.com/embed/jhafqQ3UYp4)
+[![Watch the video](https://meocloud.my.id/wp-content/uploads/2023/11/aaaaa-970x527.png)](https://youtu.be/jhafqQ3UYp4)
 
 #### Step One
 1. Go to **Manage** - **Image** - **Custom image** - Import via URL
