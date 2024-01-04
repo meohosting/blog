@@ -6,91 +6,120 @@ category: Installation
 layout: post
 ---
 
-# Windows Installation on Digital Ocean
+---
+title: Install Windows on DigitalOcean
+description: What have I done
+---
+
+# Install Windows on DigitalOcean
+
+## Table of Contents
+- [Intro](#intro)
+- [Using Custom Images](#using-custom-images)
+- [Advantages and Disadvantages](#custom-image-summary)
+- [Using Recovery Mode](#using-recovery-mode)
+- [Advantages and Disadvantages](#recovery-mode-summary)
+- [Using Direct Installation](#using-direct-installation)
+- [Conclusion](#conclusion)
+- [Image Link](#image-link)
+- [Comments](#comments)
 
 ## Intro
+Install Windows on DigitalOcean. There are two methods:
+1. [Custom Images](#using-custom-images)
+2. [Recovery Method](#using-recovery-mode)
+3. [Direct Method](#using-direct-installation)
 
-### Unlimited Windows GZ
+## Using Custom Images
+### Video Tutorial
+[Watch Video](https://www.youtube.com/embed/jhafqQ3UYp4)
 
-- Using Windows image as OS
-- Using recovery mode
+#### Step One
+1. Go to **Manage** - **Image** - **Custom image** - Import via URL
+   ![Step One Image](https://meocloud.my.id/wp-content/uploads/2022/11/do1.png)
 
-## Install Windows on Digital Ocean 2022
+#### Step Two
+2. Choose any [Windows GZ file](https://meocloud.my.id/?p=6) for your Droplet OS with Import via URL.
+   After the Windows OS is successfully uploaded, go to **Droplets** - **Create** - **Droplets**
+   ![Step Two Image](https://meocloud.my.id/wp-content/uploads/2022/11/do2.png)
 
-Today, we are going to discuss how to install Windows on Digital Ocean.
+#### Step Three
+3. Choose any **Region** you like.
+   On **Choose an image**, choose **custom image**, and select the **Windows OS** you just uploaded.
+   ![Step Three Image](https://meocloud.my.id/wp-content/uploads/2022/11/do3.png)
 
-1. Register on Digital Ocean if you don’t have an account. Skip this step if you already have one.
+4. Choose **Droplets** type and create.
 
-2. **Using Custom Image**
+#### Step Four
+5. Open it with **MSTSC** or any Application for RDP.
 
-   - Go to **Manage** → **Image** → **Custom Image** → **Import via URL**
-   - Choose any Windows GZ file for your Droplet OS with **Import via URL**
-   - It will take about 1 hour to upload.
-   - After successful upload, go to **Droplets** → **Create** → **Droplets**
-   - Choose any region, select custom image under "Choose an image," and choose the Windows OS you uploaded.
-   - Choose Droplets type and create.
-   - Open it with MSTSC or any RDP application.
+##### Custom Image Summary
+- **Advantages**
+  - Save time on the next Windows installation; no need to install every time you make a new droplet.
+- **Disadvantages**
+  - Takes 1 hour or more to upload new images.
 
-   **Advantages:**
-   - Save time on subsequent Windows installations.
-  
-   **Disadvantages:**
-   - Takes 1 hour or more to upload new images.
+## Using Recovery Mode
+Next method is using recovery mode to install Windows on Digital Ocean. This method not working on all VM Type, mostly work on AMD KVM Machine. Choose Premium AMD Machine. So, this is the alternative way, and I am personally not recommended this method.
 
-3. **Using Recovery Mode**
+1. Go to **Droplets** - **Create** - **Droplets**
+   ![Step One Image](https://meocloud.my.id/wp-content/uploads/2022/11/do2.png)
 
-   - Choose any region, select any Linux image under "Choose Image," and choose any Droplets Size and type.
-   - Turn off the Droplet, go to **Recovery**, pick "Boot from Recovery ISO," and turn it on.
-   - Go to Recovery Console.
-   - Choose 1 to mount the drive and write the root password.
-   - Open Putty, log in to your droplets with root and password.
-   - Run the following script:
-     ```bash
+2. Choose any **Region** you want, and on **Choose Image** just choose any linux image and choose any **Droplets Size** and type that you want
+   ![Step Two Image](https://meocloud.my.id/wp-content/uploads/2022/11/do4.png)
+
+3. **Turn off** the Droplets that you just created and go to **Recovery**, and pick **Boot from Recovery ISO**, and **turn it on**
+   ![Step Three Image](https://meocloud.my.id/wp-content/uploads/2022/11/do5.png)
+
+4. Go to **Recovery Console**
+   ![Step Four Image](https://meocloud.my.id/wp-content/uploads/2022/11/do6.png)
+
+5. On Recovery Console, Choose **1** to mount the drive and write the root password
+   ![Step Five Image](https://meocloud.my.id/wp-content/uploads/2022/11/do7.png)
+
+6. Open **Putty** and login to your droplets with root and password that you just write it down.
+   - `sudo su -`
+   - `choose 1` (mount disk image)
+   - `choose 5` (Attempt to "chroot" into installation system)
+   - Paste this script:
+     ```sh
      wget --no-check-certificate -O- "Windows URL" | gzip | dd of=/dev/vda
      ```
      or
-     ```bash
+     ```sh
      wget -O- "Windows URL" | gunzip | dd of=/dev/vda
      ```
-   - Wait until fully downloaded (usually 5-15 minutes).
-   - Go to Digital Ocean Droplets, set "Boot from Hard Drive" to off, then on.
-   - Use MSTSC to open your RDP.
+   - Wait until it fully downloaded. Usually takes 5-15 minutes until fully download
+   ![Step Six Image](https://meocloud.my.id/wp-content/uploads/2022/11/do8.png)
 
-   **Advantages:**
-   - No need to wait 1 hour or more for creating your RDP.
-   
-   **Disadvantages:**
-   - Need to repeat this method for each new Windows RDP.
-   - Not working on all VM types, mostly on AMD VMs.
+7. After the image fully downloaded, Go to your Digital Ocean Droplets and set **Boot from Hard Drive** - **turn it off** - **turn it on**
 
-4. **Using Direct Installation [Update 22.06.2023]**
+8. Use **MSTSC** to open your RDP
 
-   - Go to your Droplets **Access** → **Launch Droplets Console**
-   - Paste the script on your Droplets Console:
-     ```bash
-     wget -qO MeoNet.sh 'https://meocloud.my.id/MeoNet.sh' && bash MeoNet.sh -dd 'Windows URL'
-     ```
-   - Follow the installation process.
+##### Recovery Mode Summary
+- **Advantages**
+  - No need 1 hour or more to create your RDP
+- **Disadvantages**
+  - You need to do this method every time you create a new droplet.
+  - This method is not working on all Droplets.
 
-   **Advantages:**
-   - Estimated time = 30 minutes to an hour.
+## Using Direct Installation
+1. Go to **Droplets** - **Create** - **Droplets** - Choose Windows OS - Choose any **Region** you want - Choose any **Droplets Type** you like and **Create**
+   ![Step One Image](https://meocloud.my.id/wp-content/uploads/2022/11/do2.png)
 
-   **Disadvantages:**
-   - Check the provided URL for the complete process.
-   
-## Conclusion
+2. After your Droplets is successfully created, open it with **MSTSC** or any Application for RDP.
 
-Every method has advantages and disadvantages; choose what is suitable for you.
+3. After your Droplets is on, the next step is to connect to it with **MSTSC** and do the installation.
 
-## Additional Notes
+##### Conclusion
+With the Custom Image method, you can save time on the next Windows installation, as you won't need to install it every time you create a new Droplet. However, keep in mind that it takes 1 hour or more to upload new images.
 
-- Choose Windows GZ file [here](link-to-choose-file).
+The Recovery Mode method is an alternative way that may not work on all VM types, mostly working on AMD KVM machines. It's not recommended personally due to its limitations.
 
-**Note:**
-1. These images are made for learning purposes only. For long-term use, please use a genuine Windows key to activate the system.
-2. All images are made by the original MSDN. I guarantee that there are no private goods. If you don't believe me, please do not use.
-3. After Windows installation success on the server, you need to manually expand the disk.
-4. Using Windows images may violate the TOS of some merchants, and I am not responsible for being punished by merchants for using images created by me.
+Direct Installation is the simplest method, where you create a new Droplet with Windows OS directly.
 
-**Subscription Information:**
-- This Windows Installation is a subscription service. It is not provided for free ($5/yearly). You can make payment through Paypal, Cryptocoins, Dana, Ovo, or Bank Transfer.
+## Image Link
+[Windows GZ File](https://meocloud.my.id/?p=6)
+
+## Comments
+Feel free to share your thoughts or ask questions about the methods described above.
