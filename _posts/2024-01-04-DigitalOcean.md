@@ -25,7 +25,7 @@ description: What have I done
 - [Comments](#comments)
 
 ## Intro
-Install Windows on DigitalOcean. There are two methods:
+Install Windows on DigitalOcean. There are three methods:
 1. [Custom Images](#using-custom-images)
 2. [Recovery Method](#using-recovery-mode)
 3. [Direct Method](#using-direct-installation)
